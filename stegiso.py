@@ -1,30 +1,38 @@
-#all imports
+#все необходимые импорты
+import base64
 import time
 import pycdlib
-#preparing our texts
-stegist1=open('/home/ul/stegist1.txt','r')
-stegist2=open('/home/ul/stegist2.txt','r')
-#creating a new file that constist of 1 part of 1 and 2 file
-stegistup=open('/home/ul/stegistup.txt','a+')
-steg11=stegist1.readlines(4)
-print(steg11,file=stegistup)
-stegistup.close()
-stegistup=open('/home/ul/stegistup.txt','a')
-steg21=stegist2.readlines(2)
-print(steg21,file=stegistup)
-stegistup.close()
-#creating one more new file that constist of 2 part of 1 and 2 file
-stegistdown=open('/home/ul/stegistdown.txt','a+')
-steg12=stegist1.readlines(3)
-print(steg12,file=stegistdown)
-stegistdown.close()
-stegistdown=open('/home/ul/stegistdown.txt','a')
-steg22=stegist2.readlines(2)
-print(steg22,file=stegistdown)
-stegistdown.close()
-stegist1.close()
-stegist2.close()
-#preparing our files
+#подготавливаем наши тексты
+with open('/home/ul/stegist1.txt','rb') as stegist1:# открываем файл
+    print('#Читаем файл')
+    for line1 in stegist1.readlines(2):
+        print(line1)#читаем содержимое
+    for line2 in stegist1.readlines(2):
+        print(line2)#читаем содержимое
+
+enc_line1=base64.b64encode(line1)
+print(enc_line1)
+enc_line2=base64.b64encode(line2)
+print(enc_line2)
+with open('/home/ul/stegist2.txt','rb') as stegist2:
+    print('#Читаем файл')
+    for line3 in stegist2.readlines(2):
+        print(line3)
+    for line4 in stegist2.readlines(2):
+        print(line4)
+enc_line3=base64.b64encode(line3)
+print(enc_line3)
+enc_line4=base64.b64encode(line4)
+print(enc_line4)
+with open('/home/ul/up.txt','ab') as up:
+    up.write(enc_line1)
+    up.write(enc_line3)
+with open('/home/ul/down.txt','ab') as down:
+    down.write(enc_line2)
+    down.write(enc_line4)
+time.sleep(5)
+
+#вносим все в структуру iso
 iso=pycdlib.PyCdlib()
 iso.new(rock_ridge='1.09')
 iso.add_directory(iso_path='/A1',rr_name='a1')
