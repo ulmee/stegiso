@@ -20,15 +20,15 @@ with open('/home/ul/stegist2.txt','rb') as stegist2: #открываем фай�
         print(line3)
     for line4 in stegist2.readlines(2): #читаем содержимое
         print(line4)
-enc_line3=base64.b64encode(line3) #шифруем содержимое
+enc_line3=base64.b64encode(line3) #кодируем содержимое
 print(enc_line3)
 enc_line4=base64.b64encode(line4)
 print(enc_line4)
 
-with open('/home/ul/up.txt','ab') as up: #В файл up записываем закодированные данные
+with open('/home/ul/UP.txt','ab') as up: #В файл UP записываем закодированные данные
     up.write(enc_line1)
     up.write(enc_line3)
-with open('/home/ul/down.txt','ab') as down: #В файл down записываем закодированные данные
+with open('/home/ul/DOWN.txt','ab') as down: #В файл DOWN записываем закодированные данные
     down.write(enc_line2)
     down.write(enc_line4)
 
