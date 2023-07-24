@@ -13,7 +13,8 @@ on:
     - cron: '33 15 * * 1'
   push:
     branches: [ "master" ]
-env: GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+env: 
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 # Declare default permissions as read only.
 permissions: read-all
 
